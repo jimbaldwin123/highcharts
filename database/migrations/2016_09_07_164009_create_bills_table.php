@@ -12,16 +12,16 @@ class CreateBillsTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('bills', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('year');
-            $table->string('ones');
-            $table->string('twos');
-            $table->string('fives');
-            $table->string('tens');
-            $table->string('twenties');
-            $table->string('fifties');
-            $table->string('hundreds');
+            $table->integer('year');
+            $table->integer('ones');
+            $table->integer('twos');
+            $table->integer('fives');
+            $table->integer('tens');
+            $table->integer('twenties');
+            $table->integer('fifties');
+            $table->integer('hundreds');
         });
     }
 
@@ -32,6 +32,6 @@ class CreateBillsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('bills');
     }
 }
