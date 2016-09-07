@@ -1,1 +1,0 @@
-{"virtualbox":{"/home/vagrant/highcharts":{"type":null,"mount_options":[],"guestpath":"/home/vagrant/highcharts","hostpath":"/home/ninge/Documents/sites/highcharts","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/ninge/Documents/sites/highcharts","disabled":false,"__vagrantfile":true}}}
