@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel Quickstart - Intermediate</title>
+    <title>Highcharts Demo</title>
 
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
@@ -74,8 +74,32 @@
     @yield('content')
 
     <!-- JavaScripts -->
+    <script src="//code.jquery.com/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    <script>
+    
+  var data = {
+    resource_id: '72a33ebb-3efe-455b-9e41-0733aaed7780', // the resource id
+    limit: 5, // get 5 results
+    q: 'jones' // query for 'jones'
+  };
+  $(document).ready(function(){
+      $.ajax({
+        url: 'https://inventory.data.gov/api/action/datastore_search',
+        type: 'GET',
+        data: data,
+        dataType: 'jsonp',
+        success: function(data) {
+          alert('Total results found: ' + data.result.total)
+        }
+      });
+  });
+
+
+
+
+</script>
 </body>
 </html>
