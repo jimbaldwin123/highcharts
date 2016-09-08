@@ -13,7 +13,7 @@ class BillsController extends Controller
     public function getAll($type = 'view')
     {
         $b = new Bills;
-        $bills = $b->where('year', '<', '1985')->get();
+        $bills = $b->where('twos', '>', 0)->get();
 //         $bills = $b->all();
         if ($type == 'json') {
             return $bills;
