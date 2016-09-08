@@ -10,10 +10,16 @@ use App\Http\Controllers\Controller;
 class BillsController extends Controller
 {
 
-    public function getAll()
+    public function getAll($type = 'view')
     {
         $b = new Bills;
         $bills = $b->where('year', '<', '1985')->get();
-        return view('chart',['bills' => $bills]);
+//         $bills = $b->all();
+        if ($type == 'json') {
+            return $bills;
+        } else {
+            return view('chart', ['bills' => $bills]);
+        }
     }
+
 }

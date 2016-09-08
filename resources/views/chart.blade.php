@@ -21,22 +21,30 @@
     </div>
 </div>
 @endsection
-
 @section('chart')
-    <script>
-        $(function () {
-            $('#container').highcharts({
+<script>
+    // TODO
+    //  - read from API
+    //  - make slider for years
+    //  - put into elixir/gulp
+
+    function toTitleCase(str){
+        return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    }
+  $(document).ready(function(){
+      $.ajax({
+        url: '/chart/json',
+        type: 'GET',
+        success: function(data) {
+            var hcdata = {
                 chart: {
-                type: 'column'
+                    type: 'column'
                 },
                 title: {
                     text: 'Bills Printed by Year'
                 },
                 xAxis: {
                     categories: [
-                        @foreach($bills as $bill)
-                            '{{$bill->year}}',
-                        @endforeach
                     ]
                 },
                 yAxis: {
@@ -44,59 +52,30 @@
                         text: 'Number of Bills'
                     }
                 },
-                series: [{
-                    name: 'Ones',
-                    data: [
-                        @foreach($bills as $bill)
-                                {{$bill->ones}},
-                        @endforeach
-                    ]
-                }, {
-                    name: 'Twos',
-                    data: [
-                        @foreach($bills as $bill)
-                                {{$bill->twos}},
-                        @endforeach
-                    ]
-                }, {
-                    name: 'Fives',
-                    data: [
-                        @foreach($bills as $bill)
-                        {{$bill->fives}},
-                        @endforeach
-                    ]
-                }, {
-                    name: 'Tens',
-                    data: [
-                        @foreach($bills as $bill)
-                        {{$bill->tens}},
-                        @endforeach
-                    ]
-                }, {
-                    name: 'Twenties',
-                    data: [
-                        @foreach($bills as $bill)
-                        {{$bill->twenties}},
-                        @endforeach
-                    ]
-                }, {
-                    name: 'Fifties',
-                    data: [
-                        @foreach($bills as $bill)
-                        {{$bill->fifties}},
-                        @endforeach
-                    ]
-                }, {
-                    name: 'Hundreds',
-                    data: [
-                        @foreach($bills as $bill)
-                        {{$bill->hundreds}},
-                        @endforeach
-                    ]
-                }
+                series: []
+            }
 
-                ]
+            var aRow = [];
+            var names = ['ones','twos','fives','tens','twenties','fifties','hundreds'];
+
+            data.forEach(function(entry) {
+                hcdata.xAxis.categories.push(entry.year);
             });
-        });
-    </script>
+
+                names.forEach(function(name){
+
+                    aRow[name] = {name: '', data:[]};
+                    aRow[name].name = toTitleCase(name);
+                    data.forEach(function(entry) {
+                        aRow[name].data.push(entry[name]);
+                    });
+                    hcdata.series.push(aRow[name]);
+                });
+
+            $('#container').highcharts(hcdata);
+        }
+      });
+  });
+</script>
 @endsection
+
