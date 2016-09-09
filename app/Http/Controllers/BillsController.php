@@ -35,7 +35,7 @@ class BillsController extends Controller
             case 'json':
             default:
                 $b = new Bills;
-                $bills = $b->where('twos', '>', 0)->get();
+                $bills = $b->where('year', '<', 1985)->get();
 
                 if ($type == 'json') {
                     return $bills;

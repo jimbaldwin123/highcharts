@@ -72,7 +72,7 @@
                     });
                     hcdata.series.push(aRow[name]);
                 });
-
+ console.log(JSON.stringify(hcdata));
             $('#container').highcharts(hcdata);
         }
       });
