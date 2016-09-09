@@ -38,7 +38,10 @@
         type: 'GET',
         success: function(datastring) {
             var data = JSON.parse(datastring);
-            console.log(data.help);
+//            console.log(JSON.stringify(data.result.records));
+            data.result.records.forEach(function(row){
+                console.log(row['Fiscal Year'].split(' ')[1]);
+            });
             var hcdata = {
                 chart: {
                     type: 'column'

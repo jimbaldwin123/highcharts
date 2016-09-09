@@ -22,7 +22,10 @@ class BillsController extends Controller
                 $response = $client->get(
                     'https://inventory.data.gov/api/action/datastore_search',
                     [
-                        'query' => ['resource_id' => '72a33ebb-3efe-455b-9e41-0733aaed7780']
+                        'query' => [
+                            'resource_id' => '72a33ebb-3efe-455b-9e41-0733aaed7780',
+                            'limit' => 5
+                        ]
                     ]);
 
                 $bills = (string) $response->getBody();
