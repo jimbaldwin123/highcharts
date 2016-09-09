@@ -6,20 +6,45 @@ use Illuminate\Http\Request;
 use App\Bills;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 
 class BillsController extends Controller
 {
 
     public function getAll($type = 'view')
     {
-        $b = new Bills;
-        $bills = $b->where('twos', '>', 0)->get();
-//         $bills = $b->all();
-        if ($type == 'json') {
-            return $bills;
-        } else {
-            return view('chart', ['bills' => $bills]);
+        switch ($type) {
+            case 'api':
+                // https://inventory.data.gov/api/action/datastore_search?resource_id=72a33ebb-3efe-455b-9e41-0733aaed7780
+
+                $client = new Client();
+                $response = $client->get(
+                    'https://inventory.data.gov/api/action/datastore_search',
+                    [
+                        'query' => ['resource_id' => '72a33ebb-3efe-455b-9e41-0733aaed7780']
+                    ]);
+
+                $bills = (string) $response->getBody();
+                return $bills;
+                break;
+
+            case 'json':
+            default:
+                $b = new Bills;
+                $bills = $b->where('twos', '>', 0)->get();
+
+                if ($type == 'json') {
+                    return $bills;
+                } else {
+                    return view('chart', ['bills' => $bills]);
+                }
+
+                break;
+
         }
+
+
     }
 
 }
