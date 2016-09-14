@@ -33,7 +33,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::delete('/task/{task}', 'TaskController@destroy');
     Route::get('/chart', 'BillsController@getAll');
     Route::get('/chart/{type}', 'BillsController@getAll');
-    Route::get('chartapi', function(){ return view('chart-api');});
+    // Route::get('/chart/{type}', 'BillsController@getAll');
+    Route::get('chartapi', function(){ return view('chart', ['type' => 'api']);});
+    // return view('chart', ['bills' => $bills, 'type' => 'db'])
     
     Route::auth();
 

@@ -23,6 +23,12 @@
 </div>
 @endsection
 @section('chart')
-    <script src="js/chartdb.js"></script>
+    @if ($type === 'api')
+        <script src="js/chartapi.js"></script>
+    @else
+        <script src="js/chartdb.js"></script>
+    @endif
+
+
 @endsection
 

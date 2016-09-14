@@ -40,7 +40,7 @@ class BillsController extends Controller
                 if ($type == 'json') {
                     return $bills;
                 } else {
-                    return view('chart', ['bills' => $bills]);
+                    return view('chart', ['bills' => $bills, 'type' => 'db']);
                 }
 
                 break;
