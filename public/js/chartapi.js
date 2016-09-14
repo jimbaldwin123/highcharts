@@ -22,7 +22,7 @@ $(document).ready(function(){
             type: 'column'
         },
         title: {
-            text: 'Bills Printed by Year  - from API'
+            text: 'U.S. Treasury, Bills Printed by Year  - from API'
         },
         xAxis: {
             categories: [

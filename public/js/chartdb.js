@@ -17,7 +17,7 @@ $(document).ready(function(){
                     type: 'column'
                 },
                 title: {
-                    text: 'Bills Printed by Year - from Database'
+                    text: 'U.S. Treasury, Bills Printed by Year - from Database'
                 },
                 xAxis: {
                     categories: [
