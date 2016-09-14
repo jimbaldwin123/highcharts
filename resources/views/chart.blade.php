@@ -42,7 +42,7 @@
                     type: 'column'
                 },
                 title: {
-                    text: 'Bills Printed by Year'
+                    text: 'Bills Printed by Year - from Database'
                 },
                 xAxis: {
                     categories: [

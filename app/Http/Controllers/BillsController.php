@@ -32,7 +32,7 @@ class BillsController extends Controller
                 return $bills;
                 break;
 
-            case 'json':
+
             default:
                 $b = new Bills;
                 $bills = $b->where('year', '<', 1985)->get();
