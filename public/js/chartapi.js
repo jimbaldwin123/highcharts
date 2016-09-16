@@ -41,13 +41,13 @@ $(document).ready(function(){
         type: 'GET',
         success: function(datastring) {
             var data = JSON.parse(datastring);
-            console.log(JSON.stringify(data));
+            //console.log(JSON.stringify(data));
             data.result.fields.forEach(function(row){
                 if(row.id.indexOf('Bill') !== -1) {
                     fields.push(row.id);
                 }
             });
-            console.log(fields);
+            //console.log(fields);
             data.result.records.forEach(function(row){
                 year = parseInt(row['Fiscal Year'].split(' ')[1]);
                 hcdata.xAxis.categories.push(year);
@@ -72,7 +72,7 @@ $(document).ready(function(){
                 });
                 hcdata.series.push(aRow[name]);
             });
-            console.log(JSON.stringify(hcdata));
+            //console.log(JSON.stringify(hcdata));
             $('#container').highcharts(hcdata);
         }
     });

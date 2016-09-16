@@ -46,7 +46,7 @@ $(document).ready(function(){
                 });
                 hcdata.series.push(aRow[name]);
             });
-            console.log(JSON.stringify(hcdata));
+            //console.log(JSON.stringify(hcdata));
             $('#container').highcharts(hcdata);
         }
     });
