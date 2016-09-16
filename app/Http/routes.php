@@ -26,7 +26,8 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/', function () {
         return view('welcome');
-    })->middleware('guest');
+    });
+
 
     Route::get('/tasks', 'TaskController@index');
     Route::post('/task', 'TaskController@store');
@@ -36,7 +37,19 @@ Route::group(['middleware' => ['web']], function () {
     // Route::get('/chart/{type}', 'BillsController@getAll');
     Route::get('chartapi', function(){ return view('chart', ['type' => 'api']);});
     // return view('chart', ['bills' => $bills, 'type' => 'db'])
-    
+
+    Route::get('/angular', function () { return view('index');});
+
+// API ROUTES ==================================
+    Route::group(array('prefix' => 'api'), function() {
+
+        // since we will be using this just for CRUD, we won't need create and edit
+        // Angular will handle both of those forms
+        // this ensures that a user can't access api/create or api/edit when there's nothing there
+        Route::resource('comments', 'CommentController',
+            array('only' => array('index', 'store', 'destroy')));
+
+    });
     Route::auth();
 
 });
