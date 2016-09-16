@@ -1,6 +1,5 @@
 // TODO
-//  - read from API
-//  - do API request server side w/ guzzle
+
 //  - make slider for years
 //  - put into elixir/gulp
 
