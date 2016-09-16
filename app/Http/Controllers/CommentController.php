@@ -29,11 +29,11 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        Comment::create(array(
-            'author' => Input::get('author'),
-            'text' => Input::get('text')
-        ));
-        return Response::json(array('success' => true));
+        $comment = new Comment;
+        $comment->author = $request->author;
+        $comment->text = $request->text;
+        $comment->save();
+        return array('success' => true);
     }
 
     /**
@@ -67,8 +67,9 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        Comment::destroy($id);
+        $comment = new Comment;
+        $comment->find($id)->delete();
 
-        return Response::json(array('success' => true));
+        return array('success' => true);
     }
 }
