@@ -10,14 +10,14 @@ class ExampleTest extends TestCase
 {
     use DatabaseTransactions;
 
-
-    public function test_i_am_redirect_to_login_if_i_try_to_view_task_lists_without_logging_in()
+    /** @test **/
+    public function i_am_redirect_to_login_if_i_try_to_view_task_lists_without_logging_in()
     {
         $this->visit('/tasks')->see('Login');
     }
 
-
-    public function test_i_can_create_an_account()
+    /** @test **/
+    public function i_can_create_an_account()
     {
         $this->visit('/register')
             ->type('Taylor Otwell', 'name')
@@ -29,8 +29,8 @@ class ExampleTest extends TestCase
             ->seeInDatabase('users', ['email' => 'taylor@laravel.com']);
     }
 
-
-    public function test_authenticated_users_can_create_tasks()
+    /** @test **/
+    public function authenticated_users_can_create_tasks()
     {
         $user = factory(User::class)->create();
 
@@ -42,8 +42,8 @@ class ExampleTest extends TestCase
              ->seeInDatabase('tasks', ['name' => 'Task 1']);
     }
 
-
-    public function test_users_can_delete_a_task()
+    /** @test **/
+    public function users_can_delete_a_task()
     {
         $user = factory(User::class)->create();
 
@@ -59,8 +59,8 @@ class ExampleTest extends TestCase
              ->see($taskTwo->name);
     }
 
-
-    public function test_users_cant_view_tasks_of_other_users()
+    /** @test **/
+    public function users_cant_view_tasks_of_other_users()
     {
         $userOne = factory(User::class)->create();
         $userTwo = factory(User::class)->create();
@@ -74,8 +74,8 @@ class ExampleTest extends TestCase
              ->dontSee($taskTwo->name);
     }
 
-
-    public function test_users_cant_delete_tasks_of_other_users()
+    /** @test **/
+    public function users_cant_delete_tasks_of_other_users()
     {
         $this->withoutMiddleware();
 
