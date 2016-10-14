@@ -1,5 +1,7 @@
 <?php
 
+use Codedge\Fpdf\Facades\Fpdf;
+
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -28,6 +30,17 @@ Route::group(['middleware' => ['web']], function () {
         return view('welcome');
     });
 
+    Route::get('/fpdf','TestController@showDoc');
+
+    Route::get('/fpdf2', function (Codedge\Fpdf\Fpdf\FPDF $fpdf) {
+
+        $fpdf->AddPage();
+        $fpdf->SetFont('Courier', 'B', 18);
+        $fpdf->Cell(50, 25, 'Hello World!');
+        $fpdf->Output();
+
+
+    });
 
     Route::get('/tasks', 'TaskController@index');
     Route::post('/task', 'TaskController@store');
