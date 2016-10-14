@@ -9,9 +9,9 @@ use App\Http\Requests;
 use Codedge\Fpdf\Facades\Fpdf;
 class DocumentController extends Controller
 {
+
     public static function renderDoc($msg)
     {
-
 
         Fpdf::AddPage();
         Fpdf::SetFont('Courier', 'B', 18);
