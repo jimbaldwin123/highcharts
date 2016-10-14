@@ -16,6 +16,6 @@ class DocumentController extends Controller
         Fpdf::AddPage();
         Fpdf::SetFont('Courier', 'B', 18);
         Fpdf::Cell(50, 25, $msg);
-        Fpdf::Output();
+        Fpdf::Output('D', 'test.pdf');
     }
 }
