@@ -30,21 +30,22 @@ Route::group(['middleware' => ['web']], function () {
         return view('welcome');
     });
 
-    Route::get('/injection','DocumentController@injection');
-    Route::get('/atlanta','DocumentController@atlanta');
-    Route::get('/altoona','DocumentController@altoona');
-    Route::get('/testinject','TestController@injection');
-    Route::get('/facade','TestController@facade');
-
-    Route::get('/fpdf2', function (Codedge\Fpdf\Fpdf\FPDF $fpdf) {
-
-        $fpdf->AddPage();
-        $fpdf->SetFont('Courier', 'B', 18);
-        $fpdf->Cell(50, 25, 'Hello World!');
-        $fpdf->Output();
-
-
-    });
+    Route::get('/test','DocumentController@test');
+//    Route::get('/injection','DocumentController@injection');
+//    Route::get('/atlanta','DocumentController@atlanta');
+//    Route::get('/altoona','DocumentController@altoona');
+//    Route::get('/testinject','TestController@injection');
+//    Route::get('/facade','TestController@facade');
+//
+//    Route::get('/fpdf2', function (Codedge\Fpdf\Fpdf\FPDF $fpdf) {
+//
+//        $fpdf->AddPage();
+//        $fpdf->SetFont('Courier', 'B', 18);
+//        $fpdf->Cell(50, 25, 'Hello World!');
+//        $fpdf->Output();
+//
+//
+//    });
 
     Route::get('/tasks', 'TaskController@index');
     Route::post('/task', 'TaskController@store');
