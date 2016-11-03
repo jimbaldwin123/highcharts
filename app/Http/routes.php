@@ -30,7 +30,11 @@ Route::group(['middleware' => ['web']], function () {
         return view('welcome');
     });
 
-    Route::get('/fpdf','TestController@showDoc');
+    Route::get('/injection','DocumentController@injection');
+    Route::get('/atlanta','DocumentController@atlanta');
+    Route::get('/altoona','DocumentController@altoona');
+    Route::get('/testinject','TestController@injection');
+    Route::get('/facade','TestController@facade');
 
     Route::get('/fpdf2', function (Codedge\Fpdf\Fpdf\FPDF $fpdf) {
 
